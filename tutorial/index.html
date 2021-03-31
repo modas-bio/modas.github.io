@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Tutorial - MODAS</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Tutorial";
+    var mkdocs_page_input_path = "tutorial.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> MODAS</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../installation/">Installation</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../quickstart/">QuickStart</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Tutorial</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#genotype-dimensionality-reduction-analysis">Genotype dimensionality reduction analysis</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#necessity-and-algorithms-of-genotype-dimensionality-reduction">Necessity and algorithms of genotype dimensionality reduction</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#feasibility-of-genotype-dimensionality-reduction">Feasibility of genotype dimensionality reduction</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#generate-genome-wide-pseudo-genotype-files">Generate genome wide pseudo-genotype files</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#convert-hapmap-format-to-plink-bed-format">Convert hapmap format to plink-bed format</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#generate-pseudo-genotype-files-for-a-large-number-of-snps-10-million">Generate pseudo-genotype files for a large number of SNPs (~10 million)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#phenotype-preprocessing-and-transformation">Phenotype preprocessing and transformation</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#filter-the-phenotype-data">Filter the phenotype data</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#transform-the-phenotype-data">Transform the phenotype data</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#prescreen-candidate-genomic-regions">Prescreen candidate genomic regions</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#perform-regional-association-analysis-to-identify-qtls">Perform regional association analysis to identify QTLs</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#perform-regional-association-analysis-on-candidate-genomic-regions">Perform regional association analysis on candidate genomic regions</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cluster-the-molecular-traits">Cluster the molecular traits</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#perform-mendelian-randomization-analysis">Perform Mendelian randomization analysis</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#mendelian-randomization-analysis">Mendelian Randomization analysis</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#mr-based-network-module-identification">MR-based network module identification</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#whole-genome-wide-association-analysis-and-visualization">Whole genome-wide association analysis and visualization</a>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../parameters/">Parameters</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">MODAS</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Tutorial</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="tutorial">Tutorial</h1>
+<p>In this chapter, the implementation of each module in MODAS will be introduced in detail, and several real-data results will also be shown in order to help users understand the principles of MODAS in depth. Moreover, a reference pipeline is also provided to help users analyze their own data. The datasets used in this part include a genotype data and a kernel metabolome data from a maize AMP population of 510 inbred lines.</p>
+<h2 id="genotype-dimensionality-reduction-analysis">Genotype dimensionality reduction analysis</h2>
+<h3 id="necessity-and-algorithms-of-genotype-dimensionality-reduction">Necessity and algorithms of genotype dimensionality reduction</h3>
+<p>Genome-wide association analysis (GWAS) is a common method for identifying quantitative trait loci (QTL). With the rapid development of transcriptome, metabolomics and other high-throughput omics technologies, multi-omics data is gradually used as molecular traits (mTraits) for GWAS analysis. However, GWAS is generally used to analyze a small number of phenotypic traits. In terms of high-dimensional omics data molecular traits, conventional GWAS method is faced with such problems as large computational resource consumption, redundant data and difficult interpretation of analytical results. Generally, the high-dimensional molecular traits datasets include thousands of points, while the genotype datasets include millions of data points. Thus, a key step of association analysis for high-dimensional omics data is to reduce the dimensionality of the data. Due to linkage disequilibrium (LD), there are highly linked SNPs in a population's genotype file, which are highly redundant. We can use dimensionality reduction method to generate a pseudo-genotype file from the original SNP-based genotype file, which can dramatically reduce the dimensionality of genotype data, and improve the efficiency of GWAS to identifying QTLs quickly.<br/><br/>
+In MODAS, Jaccard similarity coefficient, DBSCAN and PCA algorithms are jointly used for dimensionality reduction of SNP-base genotype data. In general, major allele accounts for a small proportion of heritability, while minor allele is more likely to be risk allele, therefore, the measurement of minor allele similarity can better reflect the functional similarity of SNP loci. In detail, given two SNP loci SNP1 and SNP2, use A to represent the number of minor alleles in all samples for SNP1, and use B to represent the number of minor alleles in all samples for SNP2, then, the ratio of the intersection size of A to B to the size of the union of A and B is defined as Jaccard similarity coefficient J(A,B). The larger J(A,B) value is, the higher the sample similarity is, when both A and B are empty, J(A,B) is defined as zero. Since DBSCAN is a density-based clustering algorithm, it defines the largest set of densely-connected points as clusters, clustering patterns of arbitrary shapes can be found in high-noise spaces. Compared with distance-based clustering algorithms such as K-means, DBSCAN does not need to know the number of clusters in advance, and can find clusters of any shape, as well as remove noise points. While compared with linkage disequilibrium based haplotype and tag SNP method, DBSCAN as a kind of non-supervised machine learning method, can better persist the genotype characteristic of genomic blocks, does not rely on biological parameters and has speed advantage. In addition, as a commonly used linear dimension reduction method, PCA has advantages in speed and accuracy. Thus, to sum up the advantages of these algorithms, Jaccard similarity coefficient distance matrix of minor alleles is used as the input of DBSCAN cluster algorithm to generate genomic blocks, and PCA is used for extract pseudo-genotypes from genomic blocks.</p>
+<h3 id="feasibility-of-genotype-dimensionality-reduction">Feasibility of genotype dimensionality reduction</h3>
+<p>Here, we take a known QTL of metabolite DFP (Wen et al.) as an example to exhibit the feasibility of performing association analysis using pseudo-genotypes generated by dimensionality reduction as input. First, we performed SNP-based GWAS on DFP and get a QTL region between 142MB and 143.5MB on chromosome 1. The Manhattan plot is as follow:<br/>
+<img alt="DFP_manhattan" src="../img/DFP_manhattan.png" title="DFP_manhattan" /> <br/>
+Then, we extracted the SNPs in this genomic region, and calculated the similarity coefficients of pairwise SNPs in the region through the Jaccard similarity coefficient, and then clustered the SNPs in the region through DBSCAN algorithm. The clustering result is as follow:<br/>
+<img alt="DFP_heatmap" src="../img/DFP_heatmap.png" title="DFP_heatmap" /> <br/><br/>
+It can be seen from the figure that there are mainly 4 highly linked blocks in the QTL of DFP. Among them, block3 is significantly related to the content of DFP. Principal component analysis of block3 shows that the first principal component of block3 can represent the genotype difference of all SNPs in block3. Therefore, it is feasible to perform dimensionality reduction analysis on the SNP-based genotypes to generate pseudo-genotypes for association analysis. The SNP-based genotype difference of block3 and the first principal component difference after dimensionality reduction are shown in the figure below.<br/> 
+<img alt="DFP_PCA" src="../img/DFP_PCA.png" title="DFP_PCA" /> <br/></p>
+<h3 id="generate-genome-wide-pseudo-genotype-files">Generate genome wide pseudo-genotype files</h3>
+<p>PCA as a dimensionality reduction method for genome-wide genotype data has been widely used in population structure analysis, but it can only reflect the genetic difference on the whole genome level, while the principle of QTL identification is based on specific genomic region difference among individuals in a population. However, segmentation of the whole genome may lead a result that same linkage genomic regions be assigned to different windows, which would reduce the power of association analysis. In order to prevent this situation, a sliding window method is implemented in MODAS to perform dimensionality reduction analysis on the whole genome scale. The parameter for generating genome-wide pseudo-genotype files is -genome_cluster, the parameter for setting the window size is -w, with the default value 1Mb, and the parameter for setting the step size is -s, with the default value 0.5Mb.<br/><br/>
+The command line is as follows:</p>
+<pre><code># default window and step
+MODAS.py genoidx -g ./chr_HAMP -genome_cluster -p 10 -o chr_HAMP
+# set window 2MB
+MODAS.py genoidx -g ./chr_HAMP -genome_cluster -w 2000000 -p 10 -o chr_HAMP
+# set window 2MB step 1MB
+MODAS.py genoidx -g ./chr_HAMP -genome_cluster -w 2000000 -s 1000000 -p 10 -o chr_HAMP
+</code></pre>
+<p>In the above command lines, <code>-p</code> specifies the number of chromosomes for dimensionality reduction analysis simultaneously, and the maximum is the number of chromosomes in the dimensionality reduction analysis; <code>-g</code> specifies the plink-bed format genotype file for dimensionality reduction analysis; <code>-o</code> specifies the prefix of the output file. The suffix of the generated output pseudo-genotype files are <code>genome_cluster.csv</code>.</p>
+<h3 id="convert-hapmap-format-to-plink-bed-format">Convert hapmap format to plink-bed format</h3>
+<p>The input genotype file of MODAS is plink-bed format. Since the hapmap format is also commonly used, MODAS implements a function of converting the hapmap format to plink-bed format. This can be called by the parameter <code>-convert</code>.<br/><br/>
+The command line is as follows: </p>
+<pre><code># convert hapmap genotype file to plink bed genotype file
+MODAS.py genoidx -g ./chr_HAMP.hap -convert -o ./chr_HAMP
+# convert hamap genotype file and generate pseudo-genotype file
+MODAS.py genoidx -g ./chr_HAMP.hap -convert -genome_cluster -p 10 -o ./chr_HAMP
+</code></pre>
+<h3 id="generate-pseudo-genotype-files-for-a-large-number-of-snps-10-million">Generate pseudo-genotype files for a large number of SNPs (~10 million)</h3>
+<p>When generating pseudo-genotype files for a particularly large number of SNPs (~10 million), it would be very slow. In order to solve this problem, MODAS introduces clumping analysis to retain SNPs that are almost unrelated to each other. In this way, it can not only reduce the size of the genotype file, but also retain the diversity of the population without affecting the subsequent association analysis. This SNP clumping analysis can be called by the parameter <code>-clump</code>. <br/><br/>
+The command line is as follows: </p>
+<pre><code># clumping analysis
+MODAS.py genoidx -g ./chr_HAMP -clump -o ./chr_HAMP
+# clumping analysis and generate pseudo-genotype file
+MODAS.py genoidx -g ./chr_HAMP -clump -genome_cluster -p 10 -o ./chr_HAMP
+</code></pre>
+<p>The clumping analysis will generate genotype files in plink-bed format with suffixes <code>_clump.bed</code>, <code>_clump.bim</code>, and <code>_clump.fam</code>.</p>
+<h2 id="phenotype-preprocessing-and-transformation">Phenotype preprocessing and transformation</h2>
+<h3 id="filter-the-phenotype-data">Filter the phenotype data</h3>
+<p>Phenotype data with high missing rates and low values may reduce the accuracy of association analysis. Two parameters <code>-r</code> and <code>-v</code> can be used to filter the phenotype data based on missing rates and phenotype values, respectively. MODAS considers both NA and 0 to be missing data when calculates missing rates. MODAS filters phenotype values by this criterion: the phenotype whose average value is higher than the threshold is retained, while the phenotype value below this threshold is dropped.<br/><br/>
+The command line is as follows: </p>
+<pre><code># filter missing rate 0.5
+MODAS.py phenorm -phe phe_data.csv -r 0.5 -o phe_data
+# filter value lower than 1
+MODAS.py phenorm -phe phe_data.csv -v 1 -o phe_data
+# filter missing rate 0.5 and value lower than 1
+MODAS.py phenorm -phe phe_data.csv -r 0.5 -v 1 -o phe_data 
+</code></pre>
+<h3 id="transform-the-phenotype-data">Transform the phenotype data</h3>
+<p>Omics data generally differ by orders of magnitude, which would lead to inaccurate association analysis results. MODAS supports logarithmization and normalization of the phenotype data to reduce the order of magnitude differences. Different degrees of logarithmization can be performed by calling the parameters <code>-log2</code>, <code>-ln</code>, and <code>-log10</code>. The box-cox method can be used to normalize the phenotype data by calling the parameter <code>-norm</code>. <br/><br/>
+The command line is as follows:</p>
+<pre><code># log2 transformation
+MODAS.py phenorm -phe phe_data.csv -log2 -o phe_data
+# normal distribution transformation 
+MODAS.py phenorm -phe phe_data.csv -norm -o phe_data
+</code></pre>
+<p>The suffix of the generated normalized phenotype data file is <code>normalized_phe.csv</code>.</p>
+<h2 id="prescreen-candidate-genomic-regions">Prescreen candidate genomic regions</h2>
+<p>This step can be accomplished by the subcommand <code>prescreen</code> in MODAS. Two files with suffixes <code>phe_sig_qtl.csv</code> and <code>sig_omics_phe.csv</code> will be generated, corresponding to the candidate genomic regions and candidate molecular traits, respectively. The prescreen step also need a kinship matrix as input which can be calculated automatically based on the SNP-based genotype file, which is specified by the parameter <code>-g</code>. The <code>-lm_suggest_pvalue</code> parameter is used to specify the significance threshold of the linear model, the <code>-lmm_suggest_pvalue</code> parameter specifies the significance threshold of the mixed linear model, and the <code>-genome_cluster</code> parameter specifies the pseudo-genotype files.<br/><br/>
+The command line is as follows: </p>
+<pre><code># prescreening candidate QTLs with default parameters
+MODAS.py prescreen -g ./chr_HAMP -genome_cluster ./chr_HAMP.genome_cluster.csv -phe ./E3_log2.normalized_phe.csv -o E3_log2
+# perscreening candidate QTLs with 20 threads, specifies by -p 
+MODAS.py prescreen -g ./chr_HAMP -genome_cluster ./chr_HAMP.genome_cluster.csv -phe ./E3_log2.normalized_phe.csv -p 20 -o E3_log2
+# set lm significance threshold 1e-3, lmm significance threshold 1e-5
+MODAS.py prescreen -g ./chr_HAMP -genome_cluster ./chr_HAMP.genome_cluster.csv -phe ./E3_log2.normalized_phe.csv -p 20 -lm_suggest_pvalue 1e-3 -lmm_suggest_pvalue 1e-5 -o E3_log2
+</code></pre>
+<h2 id="perform-regional-association-analysis-to-identify-qtls">Perform regional association analysis to identify QTLs</h2>
+<h3 id="perform-regional-association-analysis-on-candidate-genomic-regions">Perform regional association analysis on candidate genomic regions</h3>
+<p>Through the prescreen of pseudo-genotype files, the candidate genomic regions can be obtained, but the accurate boundaries of the QTLs still cannot be obtained. In order to accurately obtain the boundary for each QTL, MODAS performs SNP-based regional association analysis using MLM on these candidate genomic regions, and uses plink clumping analysis to merge the linked (R<sup>2</sup>=0.2) significant SNPs, to determine the precise boundaries or each QTL. Finally, a QTL with more than 10 SNPs is regarded as a reliable QTL. Since the SNPs in a QTL region cannot accurately reflect the genetic relationship of inbred lines, a kinship matrix is also needed through the parameter <code>-g</code>.<br/><br/>
+The command line is as follows: </p>
+<pre><code># identify QTLs with default parameters
+MODAS.py regiongwas -g ./chr_HAMP -phe ./E3_log2.sig_omics_phe.csv -phe_sig_qtl ./E3_log2.phe_sig_qtl.csv -o E3_log2
+# identify QTLs with 20 threads, specifies by -p
+MODAS.py regiongwas -g ./chr_HAMP -phe ./E3_log2.sig_omics_phe.csv -phe_sig_qtl ./E3_log2.phe_sig_qtl.csv -p 20 -o E3_log2
+# identify QTLs with p1 = 1e-7 and p2 = 1e-6
+MODAS.py regiongwas -g ./chr_HAMP -phe ./E3_log2.sig_omics_phe.csv -phe_sig_qtl ./E3_log2.phe_sig_qtl.csv -p1 1e-7 -p2 1e-6 -p 20 -o E3_log2
+</code></pre>
+<p>The <code>-phe_sig_qtl</code> parameter specifies the candidate genomic regions file, the <code>-phe</code> parameter specifies the candidate traits file, the <code>-g</code> parameter specifies the SNP-based genotype file, the <code>-p1</code> parameter specifies the significance threshold of index SNPs, the <code>-p2</code> parameter specifies the secondary significance threshold for clumped SNPs. The <code>regiongwas</code> subcommand generates two files with the suffixes <code>local_gwas_qtl_res.csv</code> and <code>local_gwas_bad_qtl_res.csv</code>, which deposit reliable QTLs and unreliable QTLs, respectively.<br/><br/>
+The cumulative distribution of significantly associated QTLs/metabolites after regional association analysis is looks like this:
+<img alt="mQTL_plot" src="../img/mQTL_plot.png" title="mQTL_plot" /> <br/></p>
+<h3 id="cluster-the-molecular-traits">Cluster the molecular traits</h3>
+<p>In the results of regional association analysis, the QTLs identified by different traits were sometimes overlapped. Principal component analysis can be performed for the traits with overlapped QTLs, and the first principal component PC1 be used for GWAS analysis. As a result, the same QTL could be detected, which indicated that PC1 could replace the original multiple traits to reduce the amount of computing resource. In the process of regional association analysis in MODAS, the <code>-cluster</code> parameter can be added to cluster the traits according to the distance between QTL positions and further reduce the dimension of the molecular traits.<br/><br/>
+In detail, the steps are as follows: First, when peak SNPs for two traits with a distance less than 2Mb, these traits are clustered. Second, principal component analysis is performed on the cluster and the correlation between the first principal component (PC1) and each trait are calculated. Third, when all traits have correlations greater than 0.6 with PC1 and the number of traits are greater than 2, these traits are clustered; whilst the remaining traits with correlations smaller than 0.6 are subjected to a new round a PCA; then, repeat the steps above until there is no trait remaining or no trait has a correlation greater than 0.6 with PC1, the remaining phenotypes are output separately.<br/><br/>
+The command line is as follows: </p>
+<pre><code># identify QTLs with 20 threads and cluster molecular traits
+MODAS.py regiongwas -g ./chr_HAMP -phe ./E3_log2.sig_omics_phe.csv -phe_sig_qtl ./E3_log2.phe_sig_qtl.csv -p 20 -cluster -o E3_log2
+</code></pre>
+The <code>-cluster</code> parameter will generate two files with the suffixes <code>phe_labeled.csv</code> and <code>clustered_phe.csv</code>, which correspond to the cluster label of each traits and the reduced-dimensional traits, respectively.</p>
+<h2 id="perform-mendelian-randomization-analysis">Perform Mendelian randomization analysis</h2>
+<h3 id="mendelian-randomization-analysis">Mendelian Randomization analysis</h3>
+<p>Mendelian Randomization (MR) has been successfully applied in human genetics to explain the casual relations among genetic mutations, intermediate phenotypes (e.g., hypertension, hyperlipidemia) and diseases (e.g., stroke, myocardial infarction), rather than only associations. MODAS uses two models for Mendelian randomization analysis. In linear model, z represents the most significantly associated SNP of mTrait detected in RA analysis, x represents the expression level of a mTrait, and y represents the pTrait. Then, a two-step least-squares (2SLS) estimate of the effect of x on y from an MR analysis is:<br/>
+<div style="text-align: center;"><img alt="MR_effect" src="../img/effect.png?center" title="MR_effect" /></div> <br/>
+where b<sub>zy</sub> and b<sub>zx</sub> are the least-squares estimates of z on y and x, respectively, and b<sub>xy</sub> is interpreted as the effect size of x on y free of confounding from non-genetic factors. The sampling variance of the 2SLS estimate is:<br/>
+<div style="text-align: center;"><img alt="MR_variance" src="../img/variance.png" title="MR_variance" /></div> <br/>
+where n is the sample size,<img alt="MR_rxy" src="../img/rxy.png" title="MR_rxy" /> is the proportion of variance in y explained by x, and <img alt="MR_rzx" src="../img/rzx.png" title="MR_rzx" /> is the proportion of variance in x explained by z. In mixed linear model, z represents the most significantly associated SNP of mTrait detected in RA analysis, b<sub>zy</sub> is the estimate of the most significantly associated SNP effect from mixed linear model for pTrait, var(b<sub>zy</sub>) is the estimate of the most significantly associated SNP standard error from mixed linear model for pTrait, b<sub>zx</sub> is the estimate of the most significantly associated SNP effect from mixed linear model for mTrait, var(b<sub>zx</sub>) is the estimate of the most significantly associated SNP standard error from mixed linear model for mTrait, The sampling variance of bxy can be calculated approximately as:<br/>
+<div style="text-align: center;"><img alt="MR_variance_mlm" src="../img/variance_mlm.png" title="MR_variance_mlm" /></div> <br/>
+Then, we could have a statistic:<br/>
+<div style="text-align: center;"><img alt="MR_TMR" src="../img/TMR.png" title="MR_TMR" /></div> <br/>
+to test the statistical significance of b<sub>xy</sub>, where<br/>
+<div style="text-align: center;"><img alt="MR_chi" src="../img/chi.png" title="MR_chi" /></div> <br/>
+The MR analysis in MODAS can be called by the subcommand <code>mr</code>, using either linear model (LM) or mixed linear model (MLM), with parameters <code>-lm</code> and <code>-mlm</code>, respectively. The command line is as follows:</p>
+<pre><code># lm model
+MODAS.py mr -g chr_HAMP -exposure AMP_kernel_transcriptome_v4_FPKM_correct.sig_eqtl.qqnorm.csv -outcome blup_traits_final.new.csv -qtl AMP_kernel_transcriptome_qtl_res.csv -lm  -o AMP_kernel_transcriptome_MR_lm
+# mlm model
+MODAS.py mr -g chr_HAMP -exposure AMP_kernel_transcriptome_v4_FPKM_correct.sig_eqtl.qqnorm.csv -outcome blup_traits_final.new.csv -qtl AMP_kernel_transcriptome_qtl_res.csv -mlm  -o AMP_kernel_transcriptome_MR_lm
+</code></pre>
+<h3 id="mr-based-network-module-identification">MR-based network module identification</h3>
+<p>To construct the modularized casualty network based on the casual relations, MODAS selects the gene pairs with MR effects passing the significance threshold of p value = 0.01. The edge between two connecting genes is represented by a coefficient transformed from the significance level based on the rule:<br/>
+<img alt="weight_rule" src="../img/weight_rule.png" title="weight_rule" />, 
+<img alt="weight" src="../img/weight.png" title="weight" /> represents the weight of genei and genej, <img alt="mr_count" src="../img/mr_count.png" title="mr_count" /> represents the number of gene pairs whose MR effect is less than the MR effect of genei and genej, <img alt="mr_coloc_count" src="../img/mr_coloc_count.png" title="mr_coloc_count" /> represents the number of gene pairs that simultaneously satisfy that the gene pair is colocalized and the MR effect is less than the MR effect of genei and genej. The gene pair colocalization is determined by whether the distance between the gene pair peak snp is less than 1Mb, less than 1Mb indicates that the gene pair is co-localized, otherwise, it is not co-localized.
+Then, a table of the gene-gene casualty is generated by filter edge with <img alt="weight" src="../img/weight.png" title="weight" /> &lt;0.2, followed by applying ClusterONE to construct a modularized casualty network. ClusterONE (Clustering with Overlapping Neighborhood Expansion) is a graph clustering algorithm that has been employed in generating overlapping clusters in constructing protein-protein interaction networks. This algorithm is also applicable to modularize a gene casualty network, as one gene may participate in more than one regulatory pathway. The positive and negative influence of a gene on a trait may be reflected from the positive and negative values of the MR effect, respectively, which is computed between gene expression level and the phenotypic value of a trait. <br/><br/>
+The MR-based network module identification can be called by the subcommand mr with parameter <code>-net</code>. The command line is as follows:</p>
+<pre><code># network analysis
+MODAS.py mr -g chr_HAMP -exposure AMP_kernel_transcriptome_v4_eqtl_sig.csv -outcome AMP_kernel_transcriptome_v4_eqtl_sig.csv -qtl chr_HAMP_kernel_eqtl_new.local_gwas_qtl_res.csv -mlm -p 21 -net -o chr_HAMP_kernel_eqtl_new.local_gwas_qtl_res
+</code></pre>
+<h2 id="whole-genome-wide-association-analysis-and-visualization">Whole genome-wide association analysis and visualization</h2>
+<p>Query and visualization of the regional association analysis results are not convenient, thus, a GWAS visualization module is implemented in MODAS. This module first performs GWAS and generate whole-genome level Manhattan plots for specified QTLs and traits, and then displays the results through a HTML based web page. The web page interface is divided into two areas: the left area is the navigation bar, and each label corresponds to a different QTL. Users can click on the drop-down button to list the traits of each QTL; the right area is the content page, and users can access the detailed information of each QTL or trait by clicking on the corresponding label in the left area.<br/><br/>
+The GWAS visualization module in MODAS provides users with an efficient query scheme for a large number of GWAS results, it can be called by the subcommand <code>-visual</code>. The command line is as follows:</p>
+<pre><code># visualization
+MODAS.py visual -g  chr_HAMP -phe E3_log2.normalized_phe.csv -qtl E3_log2.local_gwas_qtl_res.csv -p 6 -visual
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../parameters/" class="btn btn-neutral float-right" title="Parameters">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../quickstart/" class="btn btn-neutral" title="QuickStart"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../quickstart/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../parameters/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
