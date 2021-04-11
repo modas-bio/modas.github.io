@@ -112,23 +112,30 @@
                 <h1 id="installation">Installation</h1>
 <p>MODAS is developed using Python3 language. The installation can be done with the following command.</p>
 <h2 id="installation-using-conda">Installation using conda</h2>
-<pre><code>git clone https://github.com/CrazyHsu/MODAS
+<pre><code class="nohighlight">git clone https://github.com/CrazyHsu/MODAS
 cd MODAS
 conda create -n modas python=3.7 -y
 conda activate modas
 python setup.py build
 python setup.py install
 
-pip install cffi    # if the version of cffi less than required version
-conda install -y -c conda-forge r-rcppeigen r=3.6
-Rscript -e 'install.packages(&quot;Matrix&quot;)'
-Rscript -e 'install.packages(&quot;bigsnpr&quot;)'
+conda install -y -c conda-forge r-rcppeigen r=3.6 rpy2
+Rscript -e 'install.packages(&quot;data.table&quot;)'
+Rscript -e 'install.packages(&quot;ggplot2&quot;)'
+Rscript -e 'install.packages(&quot;ggsignif&quot;)'
+Rscript -e 'install.packages(&quot;bigsnpr&quot;,dependence=T)'
 </code></pre>
 <h2 id="mannual-installation">Mannual Installation</h2>
-<pre><code>git clone https://github.com/CrazyHsu/MODAS
+<pre><code class='nohighlight'>git clone https://github.com/CrazyHsu/MODAS
 cd MODAS
-pip install numpy pandas scipy pandas-plink sklearn
-Rscript -e 'install.packages(&quot;bigsnpr&quot;)
+python setup.py build
+python setup.py install
+
+pip3 install rpy2
+Rscript -e 'install.packages(&quot;data.table&quot;)'
+Rscript -e 'install.packages(&quot;ggplot2&quot;)'
+Rscript -e 'install.packages(&quot;ggsignif&quot;)'
+Rscript -e 'install.packages(&quot;bigsnpr&quot;,dependence=T)'
 </code></pre>
               
             </div>
