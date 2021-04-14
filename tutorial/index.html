@@ -165,8 +165,10 @@ It can be seen from the figure that there are mainly 4 highly linked blocks in t
 The command line is as follows:</p>
 <pre><code class='nohighlight'># default window and step
 MODAS.py genoidx -g ./chr_HAMP -genome_cluster -p 10 -o chr_HAMP
+
 # set window 2MB
 MODAS.py genoidx -g ./chr_HAMP -genome_cluster -w 2000000 -p 10 -o chr_HAMP
+
 # set window 2MB step 1MB
 MODAS.py genoidx -g ./chr_HAMP -genome_cluster -w 2000000 -s 1000000 -p 10 -o chr_HAMP
 </code></pre>
@@ -176,6 +178,7 @@ MODAS.py genoidx -g ./chr_HAMP -genome_cluster -w 2000000 -s 1000000 -p 10 -o ch
 The command line is as follows: </p>
 <pre><code class='nohighlight'># convert hapmap genotype file to plink bed genotype file
 MODAS.py genoidx -g ./chr_HAMP.hap -convert -o ./chr_HAMP
+
 # convert hamap genotype file and generate pseudo-genotype file
 MODAS.py genoidx -g ./chr_HAMP.hap -convert -genome_cluster -p 10 -o ./chr_HAMP
 </code></pre>
@@ -184,6 +187,7 @@ MODAS.py genoidx -g ./chr_HAMP.hap -convert -genome_cluster -p 10 -o ./chr_HAMP
 The command line is as follows: </p>
 <pre><code class='nohighlight'># clumping analysis
 MODAS.py genoidx -g ./chr_HAMP -clump -o ./chr_HAMP
+
 # clumping analysis and generate pseudo-genotype file
 MODAS.py genoidx -g ./chr_HAMP -clump -genome_cluster -p 10 -o ./chr_HAMP
 </code></pre>
@@ -194,8 +198,10 @@ MODAS.py genoidx -g ./chr_HAMP -clump -genome_cluster -p 10 -o ./chr_HAMP
 The command line is as follows: </p>
 <pre><code class='nohighlight'># filter missing rate 0.5
 MODAS.py phenorm -phe phe_data.csv -r 0.5 -o phe_data
+
 # filter value lower than 1
 MODAS.py phenorm -phe phe_data.csv -v 1 -o phe_data
+
 # filter missing rate 0.5 and value lower than 1
 MODAS.py phenorm -phe phe_data.csv -r 0.5 -v 1 -o phe_data 
 </code></pre>
@@ -204,10 +210,13 @@ MODAS.py phenorm -phe phe_data.csv -r 0.5 -v 1 -o phe_data
 The command line is as follows:</p>
 <pre><code class='nohighlight'># log2 transformation
 MODAS.py phenorm -phe phe_data.csv -log2 -o phe_data
+
 # normal distribution transformation 
 MODAS.py phenorm -phe phe_data.csv -norm -o phe_data
+
 # normal quantile transformation
 MODAS.py phenorm -phe phe_data.csv -qqnorm -o phe_data
+
 # correct phenotype by PCA and normal quantile transformation
 MODAS.py phenorm -phe AMP_kernel_transcriptome_v4_FPKM.csv -g chr_HAMP -pca -qqnorm -o AMP_kernel_transcriptome_v4_FPKM_correct
 </code></pre>
@@ -218,8 +227,10 @@ MODAS.py phenorm -phe AMP_kernel_transcriptome_v4_FPKM.csv -g chr_HAMP -pca -qqn
 The command line is as follows: </p>
 <pre><code class='nohighlight'># prescreening candidate QTLs with default parameters
 MODAS.py prescreen -g ./chr_HAMP -genome_cluster ./chr_HAMP.genome_cluster.csv -phe ./E3_log2.normalized_phe.csv -o E3_log2
+
 # perscreening candidate QTLs with 20 threads, specifies by -p 
 MODAS.py prescreen -g ./chr_HAMP -genome_cluster ./chr_HAMP.genome_cluster.csv -phe ./E3_log2.normalized_phe.csv -p 20 -o E3_log2
+
 # set lm significance threshold 1e-3, lmm significance threshold 1e-5
 MODAS.py prescreen -g ./chr_HAMP -genome_cluster ./chr_HAMP.genome_cluster.csv -phe ./E3_log2.normalized_phe.csv -p 20 -lm_suggest_pvalue 1e-3 -lmm_suggest_pvalue 1e-5 -o E3_log2
 </code></pre>
@@ -229,8 +240,10 @@ MODAS.py prescreen -g ./chr_HAMP -genome_cluster ./chr_HAMP.genome_cluster.csv -
 The command line is as follows: </p>
 <pre><code class='nohighlight'># identify QTLs with default parameters
 MODAS.py regiongwas -g ./chr_HAMP -phe ./E3_log2.sig_omics_phe.csv -phe_sig_qtl ./E3_log2.phe_sig_qtl.csv -o E3_log2
+
 # identify QTLs with 20 threads, specifies by -p
 MODAS.py regiongwas -g ./chr_HAMP -phe ./E3_log2.sig_omics_phe.csv -phe_sig_qtl ./E3_log2.phe_sig_qtl.csv -p 20 -o E3_log2
+
 # identify QTLs with p1 = 1e-7 and p2 = 1e-6
 MODAS.py regiongwas -g ./chr_HAMP -phe ./E3_log2.sig_omics_phe.csv -phe_sig_qtl ./E3_log2.phe_sig_qtl.csv -p1 1e-7 -p2 1e-6 -p 20 -o E3_log2
 </code></pre>
@@ -260,8 +273,9 @@ to test the statistical significance of b<sub>xy</sub>, where<br/>
 The MR analysis in MODAS can be called by the subcommand <code>mr</code>, using either linear model (LM) or mixed linear model (MLM), with parameters <code>-lm</code> and <code>-mlm</code>, respectively. The command line is as follows:</p>
 <pre><code class='nohighlight'># lm model
 MODAS.py mr -g chr_HAMP -exposure AMP_kernel_transcriptome_v4_FPKM_correct.sig_eqtl.qqnorm.csv -outcome blup_traits_final.new.csv -qtl AMP_kernel_transcriptome_qtl_res.csv -lm  -o AMP_kernel_transcriptome_MR_lm
+
 # mlm model
-MODAS.py mr -g chr_HAMP -exposure AMP_kernel_transcriptome_v4_FPKM_correct.sig_eqtl.qqnorm.csv -outcome blup_traits_final.new.csv -qtl AMP_kernel_transcriptome_qtl_res.csv -mlm  -o AMP_kernel_transcriptome_MR_lm
+MODAS.py mr -g chr_HAMP -exposure AMP_kernel_transcriptome_v4_FPKM_correct.sig_eqtl.qqnorm.csv -outcome blup_traits_final.new.csv -qtl AMP_kernel_transcriptome_qtl_res.csv -mlm  -o AMP_kernel_transcriptome_MR_mlm
 </code></pre>
 <h3 id="mr-based-network-module-identification">MR-based network module identification</h3>
 <p>To construct the modularized causality network based on the causal relations, MODAS selects the gene pairs with MR effects passing the significance threshold of p value = 0.01. The edge between two connecting genes is represented by a coefficient transformed from the significance level based on the rule:<br/>
