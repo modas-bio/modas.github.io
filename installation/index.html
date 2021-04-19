@@ -123,12 +123,14 @@ conda install -y -c conda-forge r-rcppeigen r=3.6 rpy2
 Rscript -e 'install.packages(c(&quot;data.table&quot;, &quot;ggplot2&quot;, &quot;ggsignif&quot;), repos=&quot;https://cloud.r-project.org&quot;)'
 Rscript -e 'install.packages(&quot;bigsnpr&quot;, dependence=T, repos=&quot;https://cloud.r-project.org&quot;)'
 
+MODAS_PATH=`pwd`
 vi ~/.bashrc
-export PATH="/MODAS_PATH/utils:$PATH"
+export PATH="$MODAS_PATH/utils:$PATH"
 source ~/.bashrc
 </code></pre>
 <h2 id="mannual-installation">Mannual Installation</h2>
-<pre><code class='nohighlight'>git clone https://github.com/liusy-jz/MODAS.git
+<pre><code class='nohighlight'>Depends: R(>=3.6), python(>=3.7)
+git clone https://github.com/liusy-jz/MODAS.git
 cd MODAS
 python setup.py build
 python setup.py install
@@ -137,8 +139,9 @@ pip3 install rpy2
 Rscript -e 'install.packages(c(&quot;data.table&quot;, &quot;ggplot2&quot;, &quot;ggsignif&quot;), repos=&quot;https://cloud.r-project.org&quot;)'
 Rscript -e 'install.packages(&quot;bigsnpr&quot;,dependence=T, repos=&quot;https://cloud.r-project.org&quot;)'
 
+MODAS_PATH=`pwd`
 vi ~/.bashrc
-export PATH="/MODAS_PATH/utils:$PATH"
+export PATH="$MODAS_PATH/utils:$PATH"
 source ~/.bashrc
 </code></pre>
               
