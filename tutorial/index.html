@@ -275,7 +275,7 @@ The MR analysis in MODAS can be called by the subcommand <code>mr</code>, using 
 MODAS.py mr -g chr_HAMP -exposure AMP_kernel_transcriptome_v4_FPKM_correct.sig_eqtl.qqnorm.csv -outcome blup_traits_final.new.csv -qtl AMP_kernel_transcriptome_qtl_res.csv -lm  -o AMP_kernel_transcriptome_MR_lm
 
 # mlm model
-MODAS.py mr -g chr_HAMP -exposure AMP_kernel_transcriptome_v4_FPKM_correct.sig_eqtl.qqnorm.csv -outcome blup_traits_final.new.csv -qtl AMP_kernel_transcriptome_qtl_res.csv -mlm  -o AMP_kernel_transcriptome_MR_mlm
+MODAS.py mr -g chr_HAMP -exposure AMP_kernel_transcriptome_v4_FPKM.sig_eqtl.qqnorm.csv -outcome blup_traits_final.new.csv -qtl AMP_kernel_transcriptome_qtl_res.csv -mlm  -o AMP_kernel_transcriptome_MR_mlm
 </code></pre>
 <h3 id="mr-based-network-module-identification">MR-based network module identification</h3>
 <p>To construct the modularized causality network based on the causal relations, MODAS selects the gene pairs with MR effects passing the significance threshold of p value = 0.01. The edge between two connecting genes is represented by a coefficient transformed from the significance level based on the rule: 
