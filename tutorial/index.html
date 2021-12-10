@@ -231,8 +231,8 @@ MODAS.py prescreen -g ./chr_HAMP -genome_cluster ./chr_HAMP.genome_cluster.csv -
 # perscreening candidate QTLs with 20 threads, specifies by -p 
 MODAS.py prescreen -g ./chr_HAMP -genome_cluster ./chr_HAMP.genome_cluster.csv -phe ./E3_log2.normalized_phe.csv -p 20 -o E3_log2
 
-# set lm significance threshold 1e-3, lmm significance threshold 1e-5
-MODAS.py prescreen -g ./chr_HAMP -genome_cluster ./chr_HAMP.genome_cluster.csv -phe ./E3_log2.normalized_phe.csv -p 20 -lm_suggest_pvalue 1e-3 -lmm_suggest_pvalue 1e-5 -o E3_log2
+# set the threshold of GWAS P value to 1e-5, and the GWAS model is MLM
+MODAS.py prescreen -g ./chr_HAMP -genome_cluster ./chr_HAMP.genome_cluster.csv -phe ./E3_log2.normalized_phe.csv -p 20 -gwas_suggest_pvalue 1e-5 -gwas_model MLM -o E3_log2
 </code></pre>
 <h2 id="perform-regional-association-analysis-to-identify-qtls">Perform regional association analysis to identify QTLs</h2>
 <h3 id="perform-regional-association-analysis-on-candidate-genomic-regions">Perform regional association analysis on candidate genomic regions</h3>
@@ -246,6 +246,8 @@ MODAS.py regiongwas -g ./chr_HAMP -phe ./E3_log2.sig_omics_phe.csv -phe_sig_qtl 
 
 # identify QTLs with p1 = 1e-7 and p2 = 1e-6
 MODAS.py regiongwas -g ./chr_HAMP -phe ./E3_log2.sig_omics_phe.csv -phe_sig_qtl ./E3_log2.phe_sig_qtl.csv -p1 1e-7 -p2 1e-6 -p 20 -o E3_log2
+# identify QTLs with GLM model
+MODAS.py regiongwas -g ./chr_HAMP -phe ./E3_log2.sig_omics_phe.csv -phe_sig_qtl ./E3_log2.phe_sig_qtl.csv -gwas_modle GLM -p 20 -o E3_log2
 </code></pre>
 <p>The <code>-phe_sig_qtl</code> parameter specifies the candidate genomic regions file, the <code>-phe</code> parameter specifies the candidate traits file, the <code>-g</code> parameter specifies the SNP-based genotype file, the <code>-p1</code> parameter specifies the significance threshold of index SNPs, the <code>-p2</code> parameter specifies the secondary significance threshold for clumped SNPs. The <code>regiongwas</code> subcommand generates two files with the suffixes <code>local_gwas_qtl_res.csv</code> and <code>local_gwas_bad_qtl_res.csv</code>, which deposit reliable QTLs and unreliable QTLs, respectively.<br/><br/>
 The cumulative distribution of significantly associated QTLs/metabolites after regional association analysis is looks like this:
@@ -289,8 +291,11 @@ MODAS.py mr -g chr_HAMP -exposure AMP_kernel_transcriptome_v4_eqtl_sig.csv -outc
 <h2 id="whole-genome-wide-association-analysis-and-visualization">Whole genome-wide association analysis and visualization</h2>
 <p>Query and visualization of the regional association analysis results are not convenient, thus, a GWAS visualization module is implemented in MODAS. This module first performs GWAS and generate whole-genome level Manhattan plots for specified QTLs and traits, and then displays the results through a HTML based web page. The web page interface is divided into two areas: the left area is the navigation bar, and each label corresponds to a different QTL. Users can click on the drop-down button to list the traits of each QTL; the right area is the content page, and users can access the detailed information of each QTL or trait by clicking on the corresponding label in the left area.<br/><br/>
 The GWAS visualization module in MODAS provides users with an efficient query scheme for a large number of GWAS results, it can be called by the subcommand <code>-visual</code>. The command line is as follows:</p>
-<pre><code class='nohighlight'># visualization
+<pre><code class='nohighlight'># visualization with default parameters
 MODAS.py visual -g  chr_HAMP -phe E3_log2.normalized_phe.csv -qtl E3_log2.local_gwas_qtl_res.csv -p 6 -visual -anno maize_genefunc.txt -o E3_log2_visual
+
+# visualization with FarmCPU model
+MODAS.py visual -g  chr_HAMP -phe E3_log2.normalized_phe.csv -qtl E3_log2.local_gwas_qtl_res.csv -gaws_model rMVP_FarmCPU -p 6 -visual -anno maize_genefunc.txt -o E3_log2_visual
 </code></pre>
               
             </div>
