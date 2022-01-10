@@ -189,8 +189,7 @@ Note: Running MODAS in Windows/Mac relies on Docker. Make sure that Docker is ru
 docker run -w /usr/data -v D:/example:/usr/data -t -d ibreading/modas:v1 /bin/bash
 </code></pre>
 <h4 id="for-mac">For Mac</h4>
-<pre><code class='nohighlight'>
-#set /usr/data as working directory by -w, mount directory /Users/macOS_user_account/example to /usr/data by -v
+<pre><code class='nohighlight'>#set /usr/data as working directory by -w, mount directory /Users/macOS_user_account/example to /usr/data by -v
 docker run -w /usr/data -v /Users/macOS_user_account/example/example:/usr/data -t -d ibreading/modas:v1 /bin/bash
 </code></pre>
 <p>The -w parameter is used to set the working directory of MODAS, and the -v parameter is used to mount the directory of Windows/Mac to the working directory of MODAS, and is used to generate the running result of MODAS in the directory of Windows/Mac.<br/>
