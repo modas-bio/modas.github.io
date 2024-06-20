@@ -10,8 +10,6 @@
   
   <link rel="shortcut icon" href="img/favicon.ico">
   <title>MODAS</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
-
   <link rel="stylesheet" href="css/theme.css" />
   <link rel="stylesheet" href="css/theme_extra.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
@@ -70,7 +68,7 @@
                     </li>
                 </ul>
                 <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="visual_example/mainPage.html">Visual_example</a>
+                    <li class="toctree-l1"><a class="reference internal" href="visual_example/">Visual_example</a>
                     </li>
                 </ul>
                 <ul>
@@ -110,11 +108,29 @@
             <div class="section">
               
                 <h1 id="modas-multi-omics-data-association-study-toolkit">MODAS - Multi-Omics Data Association Study toolkit</h1>
-<p>MODAS (Multi-Omics Data Association Study toolkit) is an efficient software for high-dimensional omics data association analysis. A major feature of MODAS is its novel genome-wide association analysis (GWAS) strategy for high-dimensional omics data. Firstly, MODAS generates pseudo-genotype files to reduce the dimensionality of the original SNP-based genotype data; then, it performs block-based GWAS to screen out the significantly associated genomic regions (SAGRs); finally, it performs SNP-based association analysis on the SAGRs to obtain the QTLs for the high-dimensional omics data. Another feature of MODAS is that it introduces Mendelian randomization algorithm to infer the genetic regulation relationship between omics-data related QTLs, which helps biological hypothesis establishment. Moreover, a HTML based web page is implemented in MODAS for the visualization and query of omics-data based GWAS results, which facilitate further gene function mining.<p/>
-<p><strong>Download link</strong>: <a href="https://github.com/liusy-jz/MODAS">https://github.com/liusy-jz/MODAS</a></p>
-<p><strong>Demo data link</strong>: <a href="https://github.com/liusy-jz/MODAS_data">https://github.com/liusy-jz/MODAS_data</a></p>
+<p>MODAS (Multi-Omics Data Association Study toolkit) is an efficient software for high-dimensional omics data association analysis, featuring five main characteristics.</p>
+<ul>
+<li>
+<p>MODAS employs a novel whole-genome association study (GWAS) strategy to handle high-dimensional omics data. Specifically, MODAS generates pseudo-genotype files to reduce the dimensionality of the original SNP-based genotype data. It then performs block-based GWAS to identify significantly associated genomic regions (SAGR), and finally conducts SNP-based association analysis on the SAGR to obtain QTLs for high-dimensional omics data.</p>
+</li>
+<li>
+<p>MODAS introduces Mendelian randomization algorithms to infer genetic regulatory relationships between molecular QTLs and phenotypic traits. This method helps to establish biological hypotheses and uncover potential genetic mechanisms.</p>
+</li>
+<li>
+<p>MODAS uses contrastive PCA algorithm to uncover differential components in population omics data between different conditions. This functionality is particularly useful for identifying agronomically important genes involved in condition comparisons, such as genes related to crop stress tolerance.</p>
+</li>
+<li>
+<p>MODAS employs an image matching algorithm to integrate multi-omics molecular QTLs, aiding in the elucidation of the genetic mechanisms underlying complex traits.</p>
+</li>
+<li>
+<p>MODAS provides an HTML-based web interface for visualizing and querying GWAS results from omics data, facilitating further gene function exploration.<br/></p>
+</li>
+</ul>
+<p><strong>Download link</strong>: <a href="https://github.com/liusy-jz/MODAS">https://github.com/liusy-jz/MODAS</a> <br/>
+<strong>Demo data link</strong>: <a href="https://github.com/liusy-jz/MODAS_data">https://github.com/liusy-jz/MODAS_data</a> <br/> 
+<strong>Demo data link2</strong>: <a href="https://zenodo.org/doi/10.5281/zenodo.11951520">https://zenodo.org/doi/10.5281/zenodo.11951520</a></p>
 <p><strong>Cite</strong>: Liu, S.Y., Xu, F., Xu, Y.T., Wang, Q., Yan, J., Wang, J.Y., Wang, X.B., and Wang, X.F. (2022). MODAS: exploring maize germplasm with multi-omics data association studies. Sci. Bull. 67, 903-906.</p>
-<p><strong>Contact us</strong>: modas_bio@163.com</p>
+<p><strong>Contant us</strong>: modas_bio@163.com</p>
 <p><strong>Note</strong>: Academic users can download directly, industrial users first contact us.</p>
 <p><img alt="logo" src="img/modas.png" title="modas" />                                                                 </p>
               
@@ -158,6 +174,10 @@
 </div>
     <script>var base_url = '.';</script>
     <script src="js/theme.js" defer></script>
+      <script src="javascripts/config.js" defer></script>
+      <script src="javascripts/mathjax.js" defer></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6" defer></script>
+      <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js" defer></script>
       <script src="search/main.js" defer></script>
     <script defer>
         window.onload = function () {
@@ -170,5 +190,5 @@
 
 <!--
 MkDocs version : 1.1.2
-Build Date UTC : 2021-03-31 08:48:05.397195+00:00
+Build Date UTC : 2024-06-20 02:16:00.446477+00:00
 -->

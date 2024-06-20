@@ -10,11 +10,9 @@
   
   <link rel="shortcut icon" href="../img/favicon.ico">
   <title>MODAS for Windows/Mac - MODAS</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
-
   <link rel="stylesheet" href="../css/theme.css" />
   <link rel="stylesheet" href="../css/theme_extra.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
   
   <script>
     // Current page data
@@ -25,8 +23,9 @@
   
   <script src="../js/jquery-2.1.1.min.js" defer></script>
   <script src="../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
+  
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -40,7 +39,7 @@
         <a href=".." class="icon icon-home"> MODAS</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -67,7 +66,7 @@
                     </li>
                 </ul>
                 <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../visual_example/mainPage.html">Visual_example</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../visual_example/">Visual_example</a>
                     </li>
                 </ul>
                 <ul class="current">
@@ -137,7 +136,6 @@
   
   <hr/>
 </div>
-
           <div role="main">
             <div class="section">
               
@@ -147,80 +145,78 @@
 <h3 id="for-windows">For Windows</h3>
 <ol>
 <li>
-<p>Go to the website <a href="https://docs.docker.com/desktop/windows/install/">https://docs.docker.com/desktop/windows/install/</a> and download the docker file.<br/>
+<p>Go to the https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi and download Linux kernel update package file.</p>
+</li>
+<li>
+<p>Then, double-click on the wsl_update_x64.msi to run the installer.</p>
+</li>
+<li>
+<p>Go to the website https://docs.docker.com/docker-for-windows/install/ and download the docker file.<br/>
 Note: A 64-bit processor and 4GB system RAM are the hardware prerequisites required to successfully run Docker on Windows 10.</p>
 </li>
 <li>
 <p>Then, double-click on the Docker Desktop Installer.exe to run the installer.</p>
 </li>
 <li>
-<p>After completion of the installation process, click Close and Restart.</p>
-</li>
-<li>
-<p>Go to the <a href="https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi">https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi</a> and download Linux kernel update package file.</p>
-</li>
-<li>
-<p>Then, double-click on the wsl_update_x64.msi to run the installer.</p>
+<p>After completion of the installation process, click Close.</p>
 </li>
 </ol>
 <h3 id="for-mac">For Mac</h3>
-<p>Please refer <a href="https://docs.docker.com/desktop/mac/install/">https://docs.docker.com/desktop/mac/install/</a>.</p>
+<p>Please refer https://docs.docker.com/desktop/mac/install/.</p>
 <h2 id="modas-installation">MODAS installation</h2>
 <h3 id="for-windows_1">For Windows</h3>
 <ol>
 <li>Press Windows+R to open “Run” box. Type “cmd” and then click “OK” to open a regular Command Prompt.</li>
 <li>Then, pull MODAS Image from Docker<br/>
-<pre><code class='nohighlight'>docker pull ibreeding/modas:v1</code></pre></li>
+<code>docker pull ibreeding/modas:v1</code></li>
 <li>After pull command is finished, MODAS is installed successfully.</li>
 </ol>
 <h3 id="for-mac_1">For Mac</h3>
 <ol>
 <li>Open the terminal by Spotlight, Applications or Finder.</li>
 <li>Then, pull MODAS Image from Docker<br/>
-<pre><code class='nohighlight'>docker pull ibreeding/modas:v1</code></pre></li>
+<code>docker pull ibreeding/modas:v1</code></li>
 <li>After pull command is finished, MODAS is installed successfully.</li>
 </ol>
 <h2 id="a-toy-try">A toy try</h2>
 <p>MODAS is a command line-based tool. When using it, user must first open terminals. In Windows, open it through Windows+R and type cmd. In Mac, open it through Spotlight, Applications or Finder.<br/>
 Note: Running MODAS in Windows/Mac relies on Docker. Make sure that Docker is running when using it.</p>
 <h3 id="running-modas-image">Running MODAS Image</h3>
-<h4 id="for-windows">For Windows</h4>
-<pre><code class='nohighlight'>#set /usr/data as working directory by -w, mount directory D:/example to /usr/data by -v
-docker run -w /usr/data -v D:/example:/usr/data -t -d ibreeding/modas:v1 /bin/bash
-</code></pre>
-<h4 id="for-mac">For Mac</h4>
-<pre><code class='nohighlight'>#set /usr/data as working directory by -w, mount directory /Users/macOS_user_account/example to /usr/data by -v
-docker run -w /usr/data -v /Users/macOS_user_account/example/example:/usr/data -t -d ibreeding/modas:v1 /bin/bash
+<pre><code>#For Windows, set /usr/data as working directory by -w, 
+# mount directory D:/example to /usr/data by -v
+docker run -w /usr/data -v D:/example:/usr/data -t -d ibreading/modas:v1 /bin/bash
+#For Mac, set /usr/data as working directory by -w, mount directory /Users/macOS_user_account/example to /usr/data by -v
+docker run -w /usr/data -v /Users/macOS_user_account/example/example:/usr/data -t -d ibreading/modas:v1 /bin/bash
 </code></pre>
 <p>The -w parameter is used to set the working directory of MODAS, and the -v parameter is used to mount the directory of Windows/Mac to the working directory of MODAS, and is used to generate the running result of MODAS in the directory of Windows/Mac.<br/>
 After running successfully, MODAS Image will run in the system in the form of a container, through the command</p>
-<pre><code class='nohighlight'>docker ps -a
+<pre><code>docker ps -a
 </code></pre>
 <p>record the <code>container_id</code> of MODAS Image <code>ibreeding/modas:v1</code> for the execution of MODAS.</p>
 <h3 id="generate-pseudo-genotype-files">Generate pseudo-genotype files</h3>
-<pre><code class='nohighlight'>docker exec container_id MODAS.py genoidx -g /root/MODAS_data/example_data/example_geno -genome_cluster -o example_geno
+<pre><code>docker exec container_id MODAS.py genoidx -g /root/MODAS_data/example_data/example_geno -genome_cluster -o example_geno
 </code></pre>
 <p>Pseudo-genotype files generated by genoidx subcommand will be saved as <code>example_geno.genome_cluster.csv</code>.</p>
 <h3 id="prescreen-candidate-genomic-regions-for-omics-data">Prescreen candidate genomic regions for omics data</h3>
 <p>The prescreen subcommand uses genome-wide genotype files to calculate the kinship matrix, first extract genotype files by:</p>
-<pre><code class='nohighlight'>docker exec container_id tar -xvf /root/MODAS_data/genotype/chr_HAMP_genotype.tar.gz
+<pre><code>docker exec container_id tar -xvf /root/MODAS_data/genotype/chr_HAMP_genotype.tar.gz
 </code></pre>
 <p>Then, the pseudo-genotype file <code>example_geno.genome_cluster.csv</code> generated by <code>genoidx</code> and the <code>example_phe.csv</code> file under the <code>example_data</code> folder are used for prescreen analysis,</p>
-<pre><code class='nohighlight'>docker exec container_id MODAS.py prescreen -g /usr/data/chr_HAMP -genome_cluster /usr/data/example_geno.genome_cluster.csv -phe /root/MODAS_data/example_data/example.phe.csv -o example
+<pre><code>docker exec container_id MODAS.py prescreen -g /usr/data/chr_HAMP -genome_cluster /usr/data/example_geno.genome_cluster.csv -phe /root/MODAS_data/example_data/example.phe.csv -o example
 </code></pre>
 <p>Prescreen subcommand generates two files including <code>example.sig_omics_phe.csv</code> containing phenotype data and <code>example.phe_sig_qtl.csv</code> containing candidate genomic regions of phenotype.</p>
 <h3 id="perform-regional-association-analysis-to-identify-qtls">Perform regional association analysis to identify QTLs</h3>
 <p>The prescreen subcommand outputs are used for regional association analysis,</p>
-<pre><code class='nohighlight'>docker exec container_id MODAS.py regiongwas -g /usr/data/chr_HAMP -phe /usr/data/example.sig_omics_phe.csv -phe_sig_qtl /usr/data/example.phe_sig_qtl.csv -o example
+<pre><code>docker exec container_id MODAS.py regiongwas -g /usr/data/chr_HAMP -phe /usr/data/example.sig_omics_phe.csv -phe_sig_qtl /usr/data/example.phe_sig_qtl.csv -o example
 </code></pre>
 <p>Regiongwas subcommand generates two QTL files including <code>example.region_gwas_qtl_res.csv</code> containing reliable QTL results and <code>example.region_gwas_bad_qtl_res.csv</code> containing unreliable QTL results.</p>
 <h3 id="perform-mendelian-randomization-analysis">Perform Mendelian randomization analysis</h3>
-<pre><code class='nohighlight'>docker exec container_id MODAS.py mr -g /usr/data/chr_HAMP -exposure /root/MODAS_data/example_data/example.exp.csv -outcome /root/MODAS_data/agronomic_traits/blup_traits_final.new.csv -qtl /root/MODAS_data/example_data/example_qtl_res.csv -mlm -o example
+<pre><code>docker exec container_id MODAS.py mr -g /usr/data/chr_HAMP -exposure /root/MODAS_data/example_data/example.exp.csv -outcome /root/MODAS_data/agronomic_traits/blup_traits_final.new.csv -qtl /root/MODAS_data/example_data/example_qtl_res.csv -mlm -o example
 </code></pre>
 <p>The results of Mendelian randomization analysis are saved as <code>example.MR.csv</code>.</p>
 <h3 id="mr-based-network-analysis">MR-based network analysis</h3>
 <p>MR-based network analysis is carried out by the parameter net of mr subcommand. It uses transcriptome data for subnetwork modules analysis,</p>
-<pre><code class='nohighlight'>docker exec container_id MODAS.py mr -g /usr/data/chr_HAMP -exposure /root/MODAS_data/example_data/network_example.exp.csv -outcome /root/MODAS_data/example_data/network_example.exp.csv -qtl /root/MODAS_data/example_data/network_example_qtl.csv -mlm -net -o network_example
+<pre><code>docker exec container_id MODAS.py mr -g /usr/data/chr_HAMP -exposure /root/MODAS_data/example_data/network_example.exp.csv -outcome /root/MODAS_data/example_data/network_example.exp.csv -qtl /root/MODAS_data/example_data/network_example_qtl.csv -mlm -net -o network_example
 </code></pre>
 <p>Network analysis generated four files, including <code>network_example.MR.csv</code> containing gene pairs with MR effect, <code>network_example.edgelist</code> containing gene pairs with weight, <code>network_example.cluster_one.result.csv</code> containing all identified subnetwork modules, <code>network_example.sig.cluster_one.result.csv</code> containing significant subnetwork modules.</p>
               
@@ -254,20 +250,20 @@ After running successfully, MODAS Image will run in the system in the form of a 
   </div>
 
   <div class="rst-versions" role="note" aria-label="versions">
-  <span class="rst-current-version" data-toggle="rst-current-version">
-    
-    
-      <span><a href="../visual_example/" style="color: #fcfcfc">&laquo; Previous</a></span>
-    
-    
-  </span>
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../visual_example/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+    </span>
 </div>
     <script>var base_url = '..';</script>
-    <script src="../js/theme_extra.js" defer></script>
     <script src="../js/theme.js" defer></script>
       <script src="../javascripts/config.js" defer></script>
+      <script src="../javascripts/mathjax.js" defer></script>
       <script src="https://polyfill.io/v3/polyfill.min.js?features=es6" defer></script>
-      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" defer></script>
+      <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js" defer></script>
       <script src="../search/main.js" defer></script>
     <script defer>
         window.onload = function () {
